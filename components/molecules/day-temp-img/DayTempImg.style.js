@@ -18,10 +18,6 @@ const DayTempImgStyle = StyleSheet.create({
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.1,*/
   },
-  tempCard: {
-    marginTop: 50,
-    color: "red",
-  },
 });
 
 export default DayTempImgStyle;

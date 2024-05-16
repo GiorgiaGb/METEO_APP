@@ -1,5 +1,5 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Modal, Pressable } from "react-native";
 import styles from "./DetailCityHeader.style";
 import Colors from "../../../costants/Colors";
 import { TouchableOpacity } from "react-native";
@@ -11,8 +11,8 @@ import DateCard from "../../atoms/dateCard/DateCard";
 import WeatherState from "../../atoms/weatherState/WeatherState";
 import TemperatureCard from "../../atoms/temperatureCard/TemperatureCard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 
 const DetailCityHeader = ({
   cityName,
@@ -23,6 +23,8 @@ const DetailCityHeader = ({
   temperature,
 }) => {
   const navigation = useNavigation();
+  const [isModalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.screen}>
@@ -34,7 +36,49 @@ const DetailCityHeader = ({
           />
         </TouchableOpacity>
         <CityNameCard cityName={cityName} />
-        <ButtonAdd style={styles.button} />
+        <View style={styles.containerButtonDelete}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Text style={styles.cancelButton}>Delete</Text>
+          </TouchableOpacity>
+          <Modal
+            visible={isModalVisible}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={() => {
+              setModalVisible(!isModalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <View style={styles.itemsBox}>
+                  <Text style={styles.boxTitle}>
+                    Eliminare{" "}
+                    <Text style={{ fontWeight: "800" }}>{cityName}</Text> da
+                    elenco?
+                  </Text>
+                </View>
+                <View style={styles.buttonsBox}>
+                  <Pressable
+                    style={[styles.buttonConfirm, styles.buttonClose]}
+                    onPress={() => {
+                      setModalVisible(!isModalVisible);
+                      dispatch(addCity({ name: text }));
+                      onChangeText("");
+                    }}
+                  >
+                    <Text style={styles.textStyle}>Conferma</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.buttonCancel, styles.buttonClose]}
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Text style={styles.textStyle}>Annulla</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
       </View>
       <DateCard style={styles.date} day={day} date={date} month={month} />
       <WeatherState weatherState={weatherState} />

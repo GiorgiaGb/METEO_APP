@@ -39,7 +39,14 @@ const AddCityButton = () => {
       >
         <View style={AddCityButtonStyle.centeredView}>
           <View style={AddCityButtonStyle.modalView}>
-            <Text style={AddCityButtonStyle.boxTitle}>Aggiungi una città!</Text>
+            <View style={AddCityButtonStyle.itemsBox}>
+              <Text style={AddCityButtonStyle.boxTitle}>
+                Aggiungi una città!
+              </Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Text style={AddCityButtonStyle.symbol}>X</Text>
+              </TouchableOpacity>
+            </View>
             <TextInput
               style={AddCityButtonStyle.inputText}
               placeholder="Inserisci una città"

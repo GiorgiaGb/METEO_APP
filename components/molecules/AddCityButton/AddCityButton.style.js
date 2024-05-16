@@ -7,6 +7,7 @@ const AddCityButtonStyle = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgba(128,128,128,0.5)",
   },
   boxTitle: {
     fontSize: 25,
@@ -48,9 +49,20 @@ const AddCityButtonStyle = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
   },
+  itemsBox: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  symbol: {
+    left: 40,
+    bottom: 10,
+    fontSize: 30,
+    fontWeight: "600",
+    color: Colors.primary,
   },
 });
 
