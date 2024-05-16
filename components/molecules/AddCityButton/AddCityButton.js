@@ -53,7 +53,7 @@ const AddCityButton = () => {
               ]}
               onPress={() => {
                 setModalVisible(!isModalVisible);
-                dispatch(addCity(text));
+                dispatch(addCity({ name: text }));
                 onChangeText("");
               }}
             >

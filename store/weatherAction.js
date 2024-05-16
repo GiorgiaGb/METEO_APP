@@ -10,7 +10,7 @@ export const getWeather = createAsyncThunk("getWeather", async ({ cities }) => {
       key: "83a0c1c39c134f0f56778bbf1aefeccb",
       base: "https://api.openweathermap.org/data/2.5/",
     };
-
+    console.log(cities);
     const promises = cities.map((item) =>
       axios.get(
         `${api.base}weather?q=${item.name}&appid=${api.key}&units=metric`

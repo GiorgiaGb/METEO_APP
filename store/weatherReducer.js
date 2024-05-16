@@ -20,6 +20,7 @@ export const weatherReducer = createSlice({
   initialState: initState,
   reducers: {
     addCity(state, action) {
+      console.log(action.payload);
       state.cities.push(action.payload);
     },
   },
