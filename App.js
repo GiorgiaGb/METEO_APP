@@ -1,20 +1,111 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function App() {
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+
+import HomeScreen from "./screens/homeScreen/HomeScreen";
+import DetailScreen from "./screens/detailScreen/DetailScreen";
+
+import Colors from "./costants/Colors";
+
+//import { Icon } from "react-native-elements";
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function Root() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="DetailScreen"
+        component={DetailScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator
+          //r stile={AppStyle.menu}
+          screenOptions={{
+            tabBarStyle: {
+              height: 70,
+              margin: 20,
+              borderRadius: 20,
+              shadowColor: Colors.primary,
+              shadowOffset: { width: 1, height: 3 },
+              shadowOpacity: 0.3,
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingBottom: 0,
+            },
+          }}
+        >
+          <Tab.Screen
+            name="Root"
+            component={Root}
+            options={{
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  color={Colors.primary}
+                  size={40}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={DetailScreen}
+            options={{
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons
+                  name="magnify"
+                  color={Colors.primary}
+                  size={40}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Location"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons
+                  name="map-marker-outline"
+                  color={Colors.primary}
+                  size={40}
+                />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
+  );
+}
