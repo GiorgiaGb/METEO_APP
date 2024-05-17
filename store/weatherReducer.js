@@ -9,10 +9,10 @@ const initState = {
   forecastHour: [],
   forecastDaily: [],
   cities: [
-    { name: "London" },
-    { name: "Rome,IT" },
-    { name: "Turin" },
     { name: "Chieti" },
+    { name: "Cologne" },
+    { name: "Province of Turin" },
+    { name: "London" },
   ],
 };
 export const weatherReducer = createSlice({
@@ -22,6 +22,20 @@ export const weatherReducer = createSlice({
     addCity(state, action) {
       console.log(action.payload);
       state.cities.push(action.payload);
+    },
+    removeCity(state, action) {
+      // const index = state.cities.findIndex(
+      //   (item) => item.name === action.payload
+      // );
+      // if (index !== -1) {
+      //   state.cities.splice(index, 1);
+      // }
+      // state.cities.splice(
+      //   state.cities.findIndex((item) => item.cities === action.payload, 1)
+      // );
+      state.cities = state.cities.filter(
+        (item) => item.name !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -64,5 +78,5 @@ export const weatherReducer = createSlice({
   },
 });
 
-export const { addCity } = weatherReducer.actions;
+export const { addCity, removeCity } = weatherReducer.actions;
 export default weatherReducer.reducer;

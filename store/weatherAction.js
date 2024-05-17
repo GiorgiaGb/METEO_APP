@@ -19,7 +19,7 @@ export const getWeather = createAsyncThunk("getWeather", async ({ cities }) => {
     const responses = await Promise.all(promises);
     const data = responses.map((response) => response.data);
 
-    console.log(data);
+    //console.log(data);
 
     return data;
   } catch (err) {
@@ -32,7 +32,7 @@ export const getForecast = createAsyncThunk("getForecast", async (city) => {
     const promises = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=6396264a12f3ff405e9508bd72955890&units=metric`
     );
-    console.log(promises.data);
+    //console.log(promises.data);
     return promises.data;
   } catch (err) {
     console.log(err);

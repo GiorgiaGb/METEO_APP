@@ -15,12 +15,23 @@ const CardStyle = StyleSheet.create({
     shadowOffset: { width: 1, height: 3 },
     shadowOpacity: 0.2,
   },
+  directionElement: {
+    width: 250,
+    flexDirection: "row",
+    alignItems: "center",
+    alignContent: "stretch",
+  },
   cityDateTime: {
     flexDirection: "column",
-    padding: 10,
+    width: 150,
+    marginVertical: 10,
+    left: 15,
+  },
+  tempStyle: {
+    left: 35,
   },
   time: {
-    marginTop: 10,
+    marginTop: 5,
   },
 });
 

@@ -35,7 +35,7 @@ const WeatherWeek = (props) => {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               renderItem={(weather) => {
-                console.log(WeatherColors[weather.item.weather]?.icon);
+                // console.log(WeatherColors[weather.item.weather]?.icon);
                 return (
                   <DayTempImg
                     weekDay={weather.item.date}

@@ -13,6 +13,7 @@ import TemperatureCard from "../../atoms/temperatureCard/TemperatureCard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
+import { removeCity } from "../../../store/weatherReducer";
 
 const DetailCityHeader = ({
   cityName,
@@ -24,6 +25,7 @@ const DetailCityHeader = ({
 }) => {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
+  // const [isNewArray, setNewArray] = useState("");
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
@@ -58,22 +60,22 @@ const DetailCityHeader = ({
                   </Text>
                 </View>
                 <View style={styles.buttonsBox}>
-                  <Pressable
+                  <TouchableOpacity
                     style={[styles.buttonConfirm, styles.buttonClose]}
                     onPress={() => {
+                      console.log("Removing city:", cityName);
                       setModalVisible(!isModalVisible);
-                      dispatch(addCity({ name: text }));
-                      onChangeText("");
+                      dispatch(removeCity(cityName));
                     }}
                   >
                     <Text style={styles.textStyle}>Conferma</Text>
-                  </Pressable>
-                  <Pressable
+                  </TouchableOpacity>
+                  <TouchableOpacity
                     style={[styles.buttonCancel, styles.buttonClose]}
                     onPress={() => setModalVisible(false)}
                   >
                     <Text style={styles.textStyle}>Annulla</Text>
-                  </Pressable>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>

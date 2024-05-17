@@ -14,7 +14,7 @@ const DetailScreenStyle = StyleSheet.create({
     marginTop: 0,
   },
   card: {
-    marginTop: 20,
+    marginTop: 35,
     marginVertical: 60,
   },
 });

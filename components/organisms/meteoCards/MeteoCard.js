@@ -100,6 +100,10 @@ const MeteoCard = (props) => {
                   })}
                   time={time}
                   temperature={temperature}
+                  imageWeather={
+                    "http://openweathermap.org/img/wn/" +
+                    WeatherColors[cityWeather]?.icon
+                  }
                   colors={
                     WeatherColors[cityWeather]?.color || [
                       "#5679e4",
