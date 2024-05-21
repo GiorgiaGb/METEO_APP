@@ -54,7 +54,7 @@ const DetailCityHeader = ({
               <View style={styles.modalView}>
                 <View style={styles.itemsBox}>
                   <Text style={styles.boxTitle}>
-                    Eliminare{" "}
+                    Eliminare
                     <Text style={{ fontWeight: "800" }}>{cityName}</Text> da
                     elenco?
                   </Text>
@@ -65,7 +65,8 @@ const DetailCityHeader = ({
                     onPress={() => {
                       console.log("Removing city:", cityName);
                       setModalVisible(!isModalVisible);
-                      dispatch(removeCity(cityName));
+                      dispatch(removeCity({ name: cityName }));
+                      navigation.navigate("HomeScreen");
                     }}
                   >
                     <Text style={styles.textStyle}>Conferma</Text>
