@@ -22,6 +22,7 @@ const DetailCityHeader = ({
   date,
   month,
   temperature,
+  username,
 }) => {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
@@ -65,7 +66,7 @@ const DetailCityHeader = ({
                     onPress={() => {
                       console.log("Removing city:", cityName);
                       setModalVisible(!isModalVisible);
-                      dispatch(removeCity({ name: cityName }));
+                      dispatch(removeCity({ name: cityName, username }));
                       navigation.navigate("HomeScreen");
                     }}
                   >

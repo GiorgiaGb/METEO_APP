@@ -23,16 +23,18 @@ export const weatherReducer = createSlice({
   reducers: {
     addCity(state, action) {
       console.log(action.payload);
-      const cityNameToAdd = action.payload.name;
-      const normalizedCityName = normalizeCityName(cityNameToAdd);
+
+      const { name, username } = action.payload;
+      const normalizedCityName = normalizeCityName(name);
       state.cities.push({ name: normalizedCityName }); //città con il nome normalizzato
       const jsonCities = JSON.stringify(state.cities);
-      AsyncStorage.setItem("cities", jsonCities);
+      AsyncStorage.setItem("cities_" + username, jsonCities);
     },
     removeCity(state, action) {
       console.log("Payload:", action.payload.name);
-      const cityNameToRemove = action.payload.name;
-      const normalizedCityNameToRemove = normalizeCityName(cityNameToRemove);
+
+      const { name, username } = action.payload;
+      const normalizedCityNameToRemove = normalizeCityName(name);
       const matches = stringSimilarity.findBestMatch(
         normalizedCityNameToRemove,
         state.cities.map((city) => city.name)
@@ -45,7 +47,7 @@ export const weatherReducer = createSlice({
         state.cities = updatedCities;
         console.log("Array aggiornato:", state.cities);
         const jsonCities = JSON.stringify(state.cities);
-        AsyncStorage.setItem("cities", jsonCities);
+        AsyncStorage.setItem("cities_" + username, jsonCities);
       } else {
         console.log("Nessuna corrispondenza trovata per", cityNameToRemove);
       }

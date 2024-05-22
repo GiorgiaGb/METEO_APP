@@ -5,11 +5,11 @@ import NameAdmin from "../../atoms/nameAdmin/NameAdmin";
 
 import TitleHeaderStyle from "../../atoms/titleHeader/TitleHeader.style";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <View style={TitleHeaderStyle.screen}>
       <TitleHeader />
-      <NameAdmin />
+      <NameAdmin username={props.username} />
     </View>
   );
 };

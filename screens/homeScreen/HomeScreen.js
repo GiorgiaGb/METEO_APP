@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,7 +8,8 @@ import AddCityButton from "../../components/molecules/AddCityButton/AddCityButto
 import MeteoCard from "../../components/organisms/meteoCards/MeteoCard";
 import { setCities } from "../../store/weatherReducer";
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+  const { username } = props.route.params;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const HomeScreen = () => {
   const storeData = async (props) => {
     try {
       const jsonCities = JSON.stringify(props);
-      await AsyncStorage.setItem("cities", jsonCities);
+      await AsyncStorage.setItem("cities_" + username, jsonCities);
     } catch (e) {
       console.error(e);
     }
@@ -26,7 +27,7 @@ const HomeScreen = () => {
 
   const getData = async () => {
     try {
-      const jsonCities = await AsyncStorage.getItem("cities");
+      const jsonCities = await AsyncStorage.getItem("cities_" + username);
       if (jsonCities && jsonCities.length > 0) {
         dispatch(setCities(JSON.parse(jsonCities)));
       } else {
@@ -48,11 +49,13 @@ const HomeScreen = () => {
       console.error(e);
     }
   };
+
   return (
     <View>
-      <Header />
-      <AddCityButton />
-      <MeteoCard />
+      <Header username={username} />
+
+      <AddCityButton username={username} />
+      <MeteoCard /*username={username}*/ />
     </View>
   );
 };

@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 
 import HomeScreen from "./screens/homeScreen/HomeScreen";
 import DetailScreen from "./screens/detailScreen/DetailScreen";
+import LoginScreen from "./screens/loginScreen/LoginScreen";
 
 import Colors from "./costants/Colors";
 
@@ -19,7 +20,17 @@ const Stack = createNativeStackNavigator();
 
 function Root() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}

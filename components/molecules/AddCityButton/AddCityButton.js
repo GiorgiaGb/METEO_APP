@@ -14,7 +14,7 @@ import AddCityButtonStyle from "./AddCityButton.style";
 import { addCity } from "../../../store/weatherReducer";
 import { useDispatch } from "react-redux";
 
-const AddCityButton = () => {
+const AddCityButton = ({ username }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [text, onChangeText] = useState("");
 
@@ -60,7 +60,8 @@ const AddCityButton = () => {
               ]}
               onPress={() => {
                 setModalVisible(!isModalVisible);
-                dispatch(addCity({ name: text }));
+
+                dispatch(addCity({ name: text, username }));
                 onChangeText("");
               }}
             >
