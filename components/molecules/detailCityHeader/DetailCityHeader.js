@@ -67,7 +67,7 @@ const DetailCityHeader = ({
                       console.log("Removing city:", cityName);
                       setModalVisible(!isModalVisible);
                       dispatch(removeCity({ name: cityName, username }));
-                      navigation.navigate("HomeScreen");
+                      navigation.navigate("HomeScreen", { username });
                     }}
                   >
                     <Text style={styles.textStyle}>Conferma</Text>

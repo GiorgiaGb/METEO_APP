@@ -114,8 +114,7 @@ const MeteoCard = (props) => {
                   direction={() => {
                     navigation.navigate("DetailScreen", {
                       currentCity: currentCity.item,
-
-                      //username: props.username,
+                      username: props.username,
                     });
                   }}
                 />

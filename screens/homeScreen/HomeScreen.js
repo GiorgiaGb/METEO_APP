@@ -55,7 +55,7 @@ const HomeScreen = (props) => {
       <Header username={username} />
 
       <AddCityButton username={username} />
-      <MeteoCard /*username={username}*/ />
+      <MeteoCard username={username} />
     </View>
   );
 };

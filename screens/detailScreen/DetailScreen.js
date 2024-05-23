@@ -10,7 +10,7 @@ import TimeTempBar from "../../components/organisms/timeTempBar/TimeTempBar";
 import WeatherColors from "../../costants/WeatherColors";
 
 const DetailScreen = (props) => {
-  const { currentCity } = props.route.params;
+  const { currentCity, username } = props.route.params;
   const { name, main, weather } = currentCity;
 
   return (
@@ -33,6 +33,7 @@ const DetailScreen = (props) => {
           weatherState={WeatherColors[currentCity.weather[0].main].title}
           weather-partly-lightning
           temperature={Math.floor(currentCity.main.temp) + "°"}
+          username={username}
         />
       </View>
       <View style={DetailScreenStyle.tempDay}>
